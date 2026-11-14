@@ -782,14 +782,6 @@ function launchFirework(x, targetY) {
   fireworks.push(new Firework(launchX, canvas.height, target));
 }
 
-// 在指定位置直接绽放烟花（不升空）
-function explodeAt(x, y) {
-  const fw = new Firework(x, y, y);
-  fw.exploded = true;
-  fw.explode();
-  fireworks.push(fw);
-}
-
 // 动画循环
 function animate() {
   // 用透明清除画布，让下层星空背景图透出来
@@ -812,15 +804,22 @@ function animate() {
 
 animate();
 
-// 点击放烟花 —— 点哪里在哪里绽放
+// 自动放烟花
+let autoFireInterval = setInterval(() => {
+  if (fireworks.length < 5) {
+    launchFirework();
+  }
+}, 1500);
+
+// 点击放烟花
 document.addEventListener('click', (e) => {
   if (e.target.closest('#musicBtn')) return;
   const x = e.clientX;
-  const y = e.clientY;
-  // 在点击位置直接绽放，附带几个小烟花
-  explodeAt(x, y);
-  setTimeout(() => explodeAt(x + (Math.random() - 0.5) * 120, y + (Math.random() - 0.5) * 80), 150);
-  setTimeout(() => explodeAt(x + (Math.random() - 0.5) * 120, y + (Math.random() - 0.5) * 80), 300);
+  const targetY = e.clientY;
+  launchFirework(x, targetY);
+  // 额外放几个
+  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, targetY + (Math.random() - 0.5) * 100), 200);
+  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, targetY + (Math.random() - 0.5) * 100), 400);
 });
 
 // 初始放几个烟花
@@ -947,17 +946,17 @@ musicBtn.addEventListener('click', (e) => {
   }
 });
 
-// 初始绽放几个烟花
-setTimeout(() => explodeAt(canvas.width * 0.3, canvas.height * 0.3), 500);
-setTimeout(() => explodeAt(canvas.width * 0.7, canvas.height * 0.25), 1000);
-setTimeout(() => explodeAt(canvas.width * 0.5, canvas.height * 0.15), 1500);
+// 初始放几个烟花
+setTimeout(() => launchFirework(canvas.width * 0.3, canvas.height * 0.3), 500);
+setTimeout(() => launchFirework(canvas.width * 0.7, canvas.height * 0.25), 1000);
+setTimeout(() => launchFirework(canvas.width * 0.5, canvas.height * 0.15), 1500);
 
-// 触摸支持 —— 点哪里在哪里绽放
+// 触摸支持
 document.addEventListener('touchstart', (e) => {
   if (e.target.closest('#musicBtn')) return;
   e.preventDefault();
   const touch = e.touches[0];
-  explodeAt(touch.clientX, touch.clientY);
+  launchFirework(touch.clientX, touch.clientY);
 }, { passive: false });
 </script>
 
