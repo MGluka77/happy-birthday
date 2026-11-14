@@ -691,8 +691,7 @@ class Firework {
       this.y += this.speed;
       this.speed += 0.15;
 
-      // 当烟花上升到点击的 Y 位置时爆炸
-      if (this.y <= this.targetY) {
+      if (this.speed >= 0 || this.y <= this.targetY) {
         this.explode();
         this.exploded = true;
       }
@@ -801,16 +800,22 @@ function animate() {
 
 animate();
 
-// 点击放烟花 —— 从底部升空到点击位置绽放
+// 自动放烟花
+let autoFireInterval = setInterval(() => {
+  if (fireworks.length < 5) {
+    launchFirework();
+  }
+}, 1500);
+
+// 点击放烟花
 document.addEventListener('click', (e) => {
   if (e.target.closest('#musicBtn')) return;
   const x = e.clientX;
-  const y = e.clientY;
-  // 烟花从底部升空，到达点击位置绽放
-  launchFirework(x, y);
+  const targetY = e.clientY;
+  launchFirework(x, targetY);
   // 额外放几个
-  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, y + (Math.random() - 0.5) * 100), 200);
-  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, y + (Math.random() - 0.5) * 100), 400);
+  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, targetY + (Math.random() - 0.5) * 100), 200);
+  setTimeout(() => launchFirework(x + (Math.random() - 0.5) * 200, targetY + (Math.random() - 0.5) * 100), 400);
 });
 
 // 初始放几个烟花
@@ -942,7 +947,7 @@ setTimeout(() => launchFirework(canvas.width * 0.3, canvas.height * 0.3), 500);
 setTimeout(() => launchFirework(canvas.width * 0.7, canvas.height * 0.25), 1000);
 setTimeout(() => launchFirework(canvas.width * 0.5, canvas.height * 0.15), 1500);
 
-// 触摸支持 —— 升空到触摸位置绽放
+// 触摸支持
 document.addEventListener('touchstart', (e) => {
   if (e.target.closest('#musicBtn')) return;
   e.preventDefault();
