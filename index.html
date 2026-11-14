@@ -21,23 +21,25 @@ body {
   overflow: hidden;
   background-color: #0a0a2e;
   font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 
-/* 星空照片背景（伪元素铺满视口） */
-body::before {
-  content: '';
-  position: fixed;
+
+/* 星空照片背景 */
+.bg-image {
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('https://mgluka77.github.io/happy-birthday/starry-bg.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  display: block;
 }
 
 /* 星空背景 */
@@ -485,6 +487,9 @@ body::before {
 </style>
 </head>
 <body>
+
+<!-- 星空照片背景 -->
+<img class="bg-image" src="https://mgluka77.github.io/happy-birthday/starry-bg.jpg" alt="">
 
 <!-- 星空背景 -->
 <div class="stars" id="stars"></div>
