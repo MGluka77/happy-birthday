@@ -189,143 +189,256 @@ body {
   height: 220px;
 }
 
+/* === 蛋糕底盘 === */
 .plate {
   position: absolute;
-  bottom: 0;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 260px;
-  height: 15px;
-  background: linear-gradient(90deg, #d4d4d4, #f0f0f0, #d4d4d4);
+  width: 290px;
+  height: 22px;
+  background: linear-gradient(180deg, #e8e8e8 0%, #c8c8c8 40%, #a0a0a0 100%);
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4), inset 0 -3px 8px rgba(0,0,0,0.15);
 }
 
+.plate::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 270px;
+  height: 10px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  border-radius: 50%;
+}
+
+/* === 蛋糕层通用 === */
 .cake-layer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
+  border-radius: 8px 8px 4px 4px;
 }
 
+/* 底层 */
 .layer-bottom {
-  bottom: 15px;
-  width: 200px;
-  height: 100px;
-  background: linear-gradient(180deg, #ff8fab 0%, #ff6b8b 50%, #e85878 100%);
-  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.3);
+  bottom: 0;
+  width: 220px;
+  height: 95px;
+  background:
+    linear-gradient(180deg, #ff9ec4 0%, #ff7eb3 30%, #f06292 70%, #d81b60 100%);
+  box-shadow: inset 0 -12px 25px rgba(0,0,0,0.2), inset 0 8px 15px rgba(255,255,255,0.15), 0 6px 20px rgba(0,0,0,0.3);
 }
 
+/* 中层 */
+.layer-middle {
+  bottom: 95px;
+  width: 170px;
+  height: 75px;
+  background:
+    linear-gradient(180deg, #d4a5e8 0%, #c084e0 30%, #a855c7 70%, #8e24aa 100%);
+  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), inset 0 6px 12px rgba(255,255,255,0.15), 0 5px 15px rgba(0,0,0,0.25);
+}
+
+/* 顶层 */
 .layer-top {
-  bottom: 115px;
-  width: 140px;
-  height: 80px;
-  background: linear-gradient(180deg, #c8a2e8 0%, #b088d9 50%, #9b6fc7 100%);
-  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.3);
+  bottom: 170px;
+  width: 120px;
+  height: 60px;
+  background:
+    linear-gradient(180deg, #a5d6ff 0%, #7ec4e8 30%, #4fc3f7 70%, #0288d1 100%);
+  box-shadow: inset 0 -8px 18px rgba(0,0,0,0.2), inset 0 5px 10px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* 奶油滴下效果 */
+/* === 巧克力淋面 === */
 .drip {
   position: absolute;
-  top: 0;
-  background: linear-gradient(180deg, #fff5e6, #ffe0c0);
+  top: -2px;
+  background: linear-gradient(180deg, #4a2818 0%, #3d1f10 100%);
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);
 }
 
-.drip:nth-child(1) { left: 10%; width: 30px; height: 20px; }
-.drip:nth-child(2) { left: 35%; width: 25px; height: 28px; }
-.drip:nth-child(3) { left: 60%; width: 30px; height: 18px; }
-.drip:nth-child(4) { left: 80%; width: 25px; height: 25px; }
+/* 底层淋面 */
+.layer-bottom .drip:nth-child(1) { left: 5%; width: 35px; height: 25px; }
+.layer-bottom .drip:nth-child(2) { left: 28%; width: 30px; height: 35px; }
+.layer-bottom .drip:nth-child(3) { left: 52%; width: 35px; height: 22px; }
+.layer-bottom .drip:nth-child(4) { left: 75%; width: 28px; height: 30px; }
 
-/* 蜡烛 */
+/* 中层淋面 */
+.layer-middle .drip:nth-child(1) { left: 5%; width: 28px; height: 22px; }
+.layer-middle .drip:nth-child(2) { left: 30%; width: 25px; height: 30px; }
+.layer-middle .drip:nth-child(3) { left: 55%; width: 28px; height: 20px; }
+.layer-middle .drip:nth-child(4) { left: 78%; width: 22px; height: 26px; }
+
+/* 顶层淋面 */
+.layer-top .drip:nth-child(1) { left: 8%; width: 22px; height: 18px; }
+.layer-top .drip:nth-child(2) { left: 35%; width: 20px; height: 22px; }
+.layer-top .drip:nth-child(3) { left: 60%; width: 22px; height: 16px; }
+.layer-top .drip:nth-child(4) { left: 78%; width: 18px; height: 20px; }
+
+/* === 奶油花边 === */
+.frosting-dot {
+  position: absolute;
+  bottom: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffffff, #fff0f5 60%, #ffe0ec);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* === 彩色糖珠 === */
+.sprinkle {
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+/* === 樱桃 === */
+.cherry {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8a80, #e53935 50%, #b71c1c);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cherry::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(15deg);
+  width: 2px;
+  height: 6px;
+  background: #4a7c3c;
+  border-radius: 1px;
+}
+
+/* === 蜡烛 === */
 .candle {
   position: absolute;
-  bottom: 195px;
+  bottom: 225px;
   left: 50%;
   transform: translateX(-50%);
-  width: 12px;
-  height: 50px;
+  width: 14px;
+  height: 55px;
   background: repeating-linear-gradient(
-    90deg,
-    #ff6b6b 0px, #ff6b6b 4px,
-    #ffd93d 4px, #ffd93d 8px
+    135deg,
+    #ff6b6b 0px, #ff6b6b 5px,
+    #fff 5px, #fff 10px,
+    #4d9de0 10px, #4d9de0 15px
   );
   border-radius: 3px;
   z-index: 10;
+  box-shadow: inset -2px 0 4px rgba(0,0,0,0.2);
 }
 
 .candle::before {
   content: '';
   position: absolute;
-  top: -3px;
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
+  width: 2px;
   height: 8px;
-  background: #333;
-  border-radius: 2px;
+  background: #222;
+  border-radius: 1px;
 }
 
+/* === 火焰 === */
 .flame {
   position: absolute;
-  bottom: 245px;
+  bottom: 280px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 35px;
-  background: radial-gradient(circle at 50% 80%, #fff 0%, #ffd700 20%, #ff8c00 50%, #ff4500 80%, transparent 100%);
-  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-  animation: flicker 0.15s ease-in-out infinite alternate;
-  filter: blur(1px);
-  box-shadow: 0 0 30px rgba(255, 140, 0, 0.6), 0 0 60px rgba(255, 69, 0, 0.3);
+  width: 18px;
+  height: 30px;
+  background: radial-gradient(ellipse at 50% 75%, #fff 0%, #ffe066 15%, #ffaa00 40%, #ff5500 70%, transparent 95%);
+  border-radius: 50% 50% 25% 25% / 65% 65% 35% 35%;
+  animation: flicker 0.12s ease-in-out infinite alternate;
+  filter: blur(0.8px);
+  box-shadow: 0 0 25px rgba(255, 140, 0, 0.7), 0 0 50px rgba(255, 69, 0, 0.4), 0 0 80px rgba(255, 100, 0, 0.2);
   z-index: 11;
 }
 
-@keyframes flicker {
-  0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
-  100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 1; }
+.flame::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 70%, #fff 0%, #4fc3f7 50%, transparent 90%);
+  border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
 }
 
-/* 装饰小蜡烛 */
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(0.95) rotate(-3deg); opacity: 0.85; }
+  100% { transform: translateX(-50%) scale(1.08) rotate(3deg); opacity: 1; }
+}
+
+/* === 装饰小蜡烛 === */
 .candle-small {
   position: absolute;
-  bottom: 195px;
-  width: 8px;
-  height: 35px;
+  bottom: 225px;
+  width: 10px;
+  height: 40px;
   border-radius: 2px;
   z-index: 9;
+  box-shadow: inset -2px 0 3px rgba(0,0,0,0.2);
 }
 
 .candle-small:nth-child(6) {
-  left: 35%;
-  background: repeating-linear-gradient(90deg, #4d9de0 0px, #4d9de0 3px, #fff 3px, #fff 6px);
+  left: 32%;
+  background: repeating-linear-gradient(135deg, #ff9a44 0px, #ff9a44 4px, #fff 4px, #fff 8px);
 }
 
 .candle-small:nth-child(7) {
-  right: 35%;
-  background: repeating-linear-gradient(90deg, #6bcf7f 0px, #6bcf7f 3px, #fff 3px, #fff 6px);
+  right: 32%;
+  background: repeating-linear-gradient(135deg, #6bcf7f 0px, #6bcf7f 4px, #fff 4px, #fff 8px);
 }
 
+.candle-small::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: #222;
+  border-radius: 1px;
+}
+
+/* === 小火焰 === */
 .flame-small {
   position: absolute;
-  bottom: 230px;
-  width: 12px;
-  height: 20px;
-  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-  animation: flicker 0.2s ease-in-out infinite alternate;
+  bottom: 265px;
+  width: 14px;
+  height: 22px;
+  border-radius: 50% 50% 25% 25% / 65% 65% 35% 35%;
+  animation: flicker 0.18s ease-in-out infinite alternate;
   filter: blur(0.5px);
   z-index: 10;
 }
 
 .flame-small:nth-child(8) {
-  left: 36%;
-  background: radial-gradient(circle at 50% 80%, #fff 0%, #ffd700 30%, #ff8c00 60%, transparent 100%);
+  left: 33%;
+  background: radial-gradient(ellipse at 50% 75%, #fff 0%, #ffe066 20%, #ffaa00 50%, #ff5500 80%, transparent 95%);
+  box-shadow: 0 0 18px rgba(255, 140, 0, 0.6), 0 0 35px rgba(255, 69, 0, 0.3);
 }
 
 .flame-small:nth-child(9) {
-  right: 36%;
-  background: radial-gradient(circle at 50% 80%, #fff 0%, #ffd700 30%, #ff8c00 60%, transparent 100%);
+  right: 33%;
+  background: radial-gradient(ellipse at 50% 75%, #fff 0%, #ffe066 20%, #ffaa00 50%, #ff5500 80%, transparent 95%);
+  box-shadow: 0 0 18px rgba(255, 140, 0, 0.6), 0 0 35px rgba(255, 69, 0, 0.3);
 }
 
 /* 烟花画布 */
@@ -458,7 +571,7 @@ body {
 /* 响应式 */
 @media (max-width: 768px) {
   .cake {
-    transform: scale(0.7);
+    transform: scale(0.55);
   }
   .wish-bubble {
     font-size: 0.85rem;
@@ -504,24 +617,65 @@ body {
 <!-- 生日蛋糕 -->
 <div class="cake-container">
   <div class="cake">
+    <!-- 火焰 -->
     <div class="flame"></div>
-    <div class="flame-small" style="left:36%"></div>
-    <div class="flame-small" style="right:36%"></div>
+    <div class="flame-small" style="left:33%"></div>
+    <div class="flame-small" style="right:33%"></div>
+    <!-- 蜡烛 -->
     <div class="candle"></div>
-    <div class="candle-small" style="left:35%"></div>
-    <div class="candle-small" style="right:35%"></div>
+    <div class="candle-small" style="left:32%"></div>
+    <div class="candle-small" style="right:32%"></div>
+    <!-- 顶层蛋糕 -->
     <div class="cake-layer layer-top">
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
+      <div class="drip"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div>
+      <div class="cherry" style="top:-8px;left:42%"></div>
+      <div class="sprinkle" style="top:8px;left:15%;background:#ff6b6b;transform:rotate(20deg)"></div>
+      <div class="sprinkle" style="top:14px;left:30%;background:#ffd93d;transform:rotate(-30deg)"></div>
+      <div class="sprinkle" style="top:8px;left:50%;background:#6bcf7f;transform:rotate(45deg)"></div>
+      <div class="sprinkle" style="top:16px;left:68%;background:#4d9de0;transform:rotate(-15deg)"></div>
+      <div class="sprinkle" style="top:10px;left:80%;background:#c779d0;transform:rotate(60deg)"></div>
+      <div class="frosting-dot" style="left:8%"></div>
+      <div class="frosting-dot" style="left:28%"></div>
+      <div class="frosting-dot" style="left:48%"></div>
+      <div class="frosting-dot" style="left:68%"></div>
+      <div class="frosting-dot" style="left:88%"></div>
     </div>
+    <!-- 中层蛋糕 -->
+    <div class="cake-layer layer-middle">
+      <div class="drip"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div>
+      <div class="cherry" style="top:-8px;left:20%"></div>
+      <div class="cherry" style="top:-8px;left:68%"></div>
+      <div class="sprinkle" style="top:10px;left:12%;background:#ff9a44;transform:rotate(25deg)"></div>
+      <div class="sprinkle" style="top:18px;left:40%;background:#f7567c;transform:rotate(-40deg)"></div>
+      <div class="sprinkle" style="top:12px;left:55%;background:#7fb8e8;transform:rotate(15deg)"></div>
+      <div class="sprinkle" style="top:20px;left:82%;background:#ffd93d;transform:rotate(-20deg)"></div>
+      <div class="frosting-dot" style="left:5%"></div>
+      <div class="frosting-dot" style="left:25%"></div>
+      <div class="frosting-dot" style="left:45%"></div>
+      <div class="frosting-dot" style="left:65%"></div>
+      <div class="frosting-dot" style="left:85%"></div>
+    </div>
+    <!-- 底层蛋糕 -->
     <div class="cake-layer layer-bottom">
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
+      <div class="drip"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div>
+      <div class="cherry" style="top:-8px;left:15%"></div>
+      <div class="cherry" style="top:-8px;left:45%"></div>
+      <div class="cherry" style="top:-8px;left:75%"></div>
+      <div class="sprinkle" style="top:12px;left:8%;background:#6bcf7f;transform:rotate(30deg)"></div>
+      <div class="sprinkle" style="top:20px;left:22%;background:#c779d0;transform:rotate(-25deg)"></div>
+      <div class="sprinkle" style="top:14px;left:35%;background:#ffd93d;transform:rotate(50deg)"></div>
+      <div class="sprinkle" style="top:22px;left:58%;background:#ff6b6b;transform:rotate(-10deg)"></div>
+      <div class="sprinkle" style="top:16px;left:72%;background:#4d9de0;transform:rotate(35deg)"></div>
+      <div class="sprinkle" style="top:24px;left:88%;background:#ff9a44;transform:rotate(-45deg)"></div>
+      <div class="frosting-dot" style="left:3%"></div>
+      <div class="frosting-dot" style="left:18%"></div>
+      <div class="frosting-dot" style="left:33%"></div>
+      <div class="frosting-dot" style="left:48%"></div>
+      <div class="frosting-dot" style="left:63%"></div>
+      <div class="frosting-dot" style="left:78%"></div>
+      <div class="frosting-dot" style="left:93%"></div>
     </div>
+    <!-- 底盘 -->
     <div class="plate"></div>
   </div>
 </div>
