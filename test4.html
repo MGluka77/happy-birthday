@@ -1,0 +1,11 @@
+<html><head><style>
+body{margin:0;height:100vh;background:#0a0a2e;overflow:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
+</style></head><body>
+<img id="bg" src="https://mgluka77.github.io/happy-birthday/starry-bg.jpg">
+<script>
+var i=document.getElementById('bg');
+i.onload=function(){document.title='LOADED '+i.naturalWidth+'x'+i.naturalHeight+' rect='+JSON.stringify(i.getBoundingClientRect().height);};
+i.onerror=function(){document.title='ERROR';};
+setTimeout(function(){if(!document.title.includes('LOADED'))document.title='TIMEOUT complete='+i.complete+' nat='+i.naturalWidth;},4000);
+</script></body></html>
