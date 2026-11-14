@@ -17,26 +17,21 @@ html {
   overflow: hidden;
 }
 body {
+  margin: 0;
   overflow: hidden;
-  min-height: 100vh;
-  position: relative;
   background-color: #0a0a2e;
   font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', 'PingFang SC', sans-serif;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
 }
 
 
-/* 星空照片背景 */
 /* 星空照片背景（伪元素铺满视口） */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-image: url('https://mgluka77.github.io/happy-birthday/starry-bg.jpg');
   background-size: cover;
   background-position: center center;
