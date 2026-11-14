@@ -15,11 +15,14 @@
 
 html {
   overflow: hidden;
+  height: 100%;
+  background-color: #050518;
 }
 body {
   margin: 0;
   overflow: hidden;
   position: relative;
+  height: 100%;
   min-height: 100vh;
   background-color: #0a0a2e;
   font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', 'PingFang SC', sans-serif;
@@ -29,11 +32,11 @@ body {
 
 /* 星空照片背景 */
 .bg-image {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -957,23 +960,5 @@ document.addEventListener('touchstart', (e) => {
 </script>
 
 
-<script>
-window.addEventListener('load', function(){
-setTimeout(function(){
-  var img = document.querySelector('.bg-image');
-  var d = document.createElement('pre');
-  d.style.cssText='position:fixed;top:0;left:0;z-index:99999;color:#0f0;background:#000;font-size:12px;padding:6px;max-width:100%;white-space:pre-wrap';
-  var r = img.getBoundingClientRect();
-  var cs = getComputedStyle(img);
-  d.textContent = 'innerH=' + window.innerHeight +
-    ' imgNat=' + img.naturalWidth + 'x' + img.naturalHeight +
-    ' imgRect=' + Math.round(r.width) + 'x' + Math.round(r.height) +
-    ' pos=' + cs.position + ' z=' + cs.zIndex +
-    ' bodyH=' + document.body.getBoundingClientRect().height +
-    ' scrollH=' + document.documentElement.scrollHeight;
-  document.body.appendChild(d);
-}, 2500);
-});
-</script>
 </body>
 </html>

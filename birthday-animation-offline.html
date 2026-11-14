@@ -15,11 +15,14 @@
 
 html {
   overflow: hidden;
+  height: 100%;
+  background-color: #050518;
 }
 body {
   margin: 0;
   overflow: hidden;
   position: relative;
+  height: 100%;
   min-height: 100vh;
   background-color: #0a0a2e;
   font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', 'PingFang SC', sans-serif;
@@ -29,11 +32,11 @@ body {
 
 /* 星空照片背景 */
 .bg-image {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -955,6 +958,7 @@ document.addEventListener('touchstart', (e) => {
   launchFirework(touch.clientX, touch.clientY);
 }, { passive: false });
 </script>
+
 
 </body>
 </html>
