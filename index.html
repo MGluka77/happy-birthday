@@ -524,50 +524,6 @@ body {
   50% { opacity: 0.8; }
 }
 
-/* 音乐播放按钮 */
-.music-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  color: white;
-  cursor: pointer;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.music-btn:hover {
-  background: rgba(255,255,255,0.2);
-  transform: scale(1.1);
-}
-
-.music-btn.playing {
-  background: rgba(255,107,107,0.35);
-  border-color: rgba(255,107,107,0.7);
-  box-shadow: 0 4px 20px rgba(255,107,107,0.3);
-  animation: musicPulse 2s ease-in-out infinite;
-}
-
-@keyframes musicPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(255,107,107,0.3); }
-  50% { box-shadow: 0 4px 30px rgba(255,107,107,0.6); }
-}
-
-.music-btn svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
 /* 响应式 */
 @media (max-width: 768px) {
   .cake {
@@ -679,12 +635,6 @@ body {
     <div class="plate"></div>
   </div>
 </div>
-
-<!-- 音乐播放按钮 -->
-<button class="music-btn" id="musicBtn" title="点击播放/停止生日歌">
-  <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-  <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-</button>
 
 <!-- 点击提示 -->
 <div class="click-hint">✨ 点击屏幕放烟花 ✨</div>
@@ -967,7 +917,6 @@ let autoFireInterval = setInterval(() => {
 
 // 点击放烟花
 document.addEventListener('click', (e) => {
-  if (e.target.closest('#musicBtn')) return;
   const x = e.clientX;
   const targetY = e.clientY;
   launchFirework(x, targetY);
@@ -1074,32 +1023,6 @@ function stopMusic() {
   activeOscillators = [];
 }
 
-// 音乐播放/停止按钮
-const musicBtn = document.getElementById('musicBtn');
-const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
-
-musicBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  isPlaying = !isPlaying;
-
-  if (isPlaying) {
-    initAudio();
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    musicBtn.classList.add('playing');
-    playIcon.style.display = 'none';
-    pauseIcon.style.display = 'block';
-    playBirthdaySong();
-  } else {
-    musicBtn.classList.remove('playing');
-    playIcon.style.display = 'block';
-    pauseIcon.style.display = 'none';
-    stopMusic();
-  }
-});
-
 // 初始放几个烟花
 setTimeout(() => launchFirework(canvas.width * 0.3, canvas.height * 0.3), 500);
 setTimeout(() => launchFirework(canvas.width * 0.7, canvas.height * 0.25), 1000);
@@ -1107,7 +1030,6 @@ setTimeout(() => launchFirework(canvas.width * 0.5, canvas.height * 0.15), 1500)
 
 // 触摸支持
 document.addEventListener('touchstart', (e) => {
-  if (e.target.closest('#musicBtn')) return;
   e.preventDefault();
   const touch = e.touches[0];
   launchFirework(touch.clientX, touch.clientY);
